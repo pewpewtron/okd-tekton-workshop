@@ -10,10 +10,10 @@ spec:
       mountPath: /workspace/source
   params:
     - name: MANIFEST
-      description: "Directory where the mainfest file for deployment"
+      description: "Directory of the manifest file for deployment"
       default: "deploy"
     - name: DEPLOY
-      description: "Path to the deployment yaml file"
+      description: "File name for deployment"
       default: "deploy.yaml"
   steps:
     - name: check-source
