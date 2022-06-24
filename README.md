@@ -1,6 +1,6 @@
 # Tekton Workshop
 
-This is a sample starter project that provides you with a basic Express app and a sample test in a `/src/test` sub directory.
+This is a sample starter project forked from [redhat-developer/devfile-sample](https://github.com/redhat-developer/devfile-sample) and used as sample app for ci/cd solution on OKD/OpenShift using Tekton.
 
 ## License
 
