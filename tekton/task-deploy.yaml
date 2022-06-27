@@ -30,7 +30,9 @@ spec:
       script: |
         #!/usr/bin/env bash
         oc whoami
+        echo ===========================
         oc get project
+        echo ===========================
         oc apply -f $(workspaces.source.path)/$(params.MANIFEST)/$(params.DEPLOY)
     - name: check-deploy
       image: quay.io/openshift/origin-cli

@@ -28,6 +28,15 @@ kubectl create secret docker-registry <secret-name> \
   --docker-password=$CONTAINER_REGISTRY_PASSWORD
 ```
 
+example
+
+```bash
+kubectl create secret docker-registry registry-cred \
+  --docker-server='https://index.docker.io/v2/' \
+  --docker-username='your_username' \
+  --docker-password='your_acesss_token'
+```
+
 > The container registry server URL, for Quay.io its quay.io and for DockerHub it is https://index.docker.io/v2/
 
 ### 2. Service Account
@@ -36,6 +45,7 @@ Secret will be patch to service account so the  service account have necessary c
 
 ```bash
 kubectl create serviceaccount <serviceaccount-name>
+kubectl create serviceaccount build-bot
 ```
 
 Now patch the service account so the service account have container registry credentials:
@@ -43,6 +53,26 @@ Now patch the service account so the service account have container registry cre
 ```bash
 kubectl patch serviceaccount <serviceaccount-name> \
   -p '{"secrets": [{"name": "<secret-name>"}]}'
+```
+
+example:
+
+```bash
+kubectl patch serviceaccount build-bot \
+  -p '{"secrets": [{"name": "registry-cred"}]}'
+```
+
+Check serviceaccount
+
+```bash
+oc get sa <serviceaccount-name> -o yaml
+oc get sa build-bot -o yaml
+```
+
+Set running Tasks with privileged access on OpenShift 
+
+```bash
+oc adm policy add-scc-to-user anyuid -z build-bot
 ```
 
 ### 3. PVC
