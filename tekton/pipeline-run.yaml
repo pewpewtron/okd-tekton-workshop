@@ -35,4 +35,4 @@ spec:
         claimName: pipeline-pvc
   pipelineRef:
     name: pipeline-demo
-  serviceAccountName: build-bot
+  serviceAccountName: pipeline-sa
