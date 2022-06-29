@@ -13,6 +13,7 @@
 3. Fill the required repo url.
 
 > **Note**
+>
 > Since the source code located inside another directory we need to add context value located in `Show advanced Git options` then add your source code directory on Context dir field.
 
 4. After the code successfully identified by s2i, the console will automaticaly select the appropriate builder image.
