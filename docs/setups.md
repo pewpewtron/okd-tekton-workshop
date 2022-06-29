@@ -4,16 +4,18 @@
 
 1. [OC or kubectl](https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.10.18/) CLI tools installed
 
+> **Note**
 > Download Link From mirror.openshift.com. download file openshift-client-yourOS
 
 2. DockerHub account and its access token
 
+> **Note**
 > To create DockerHub access token login with your account then go to account settings > Security > New Access Token > then give description and Access permissions minimum 'Read & Write'.
 
 3. [Tekton CLI ](https://tekton.dev/docs/cli/)
 
-> Optional:
-> [Tekton Extension on  Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-tekton-pipelines) and GitHub Account
+> **Note**
+> Optional tools: [Tekton Extension on  Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-tekton-pipelines) and GitHub Account
 
 ## Setups
 
@@ -34,6 +36,7 @@ kubectl create secret docker-registry registry-cred \
   --docker-password='your_acesss_token'
 ```
 
+> **Note**
 > The container registry server URL, for Quay.io its quay.io and for DockerHub it is https://index.docker.io/v2/
 
 ### 2. Service Account
@@ -109,7 +112,8 @@ Parameters Name | Parameter call | Description
 
 The build process is self-explanatory, it takes the source code and builds an image from dockerfile on that source. There are 4 steps on this build, the first one is not mandatory and its function to check source where the script contains a calling parameter to check if the source contains the dockerfile and checking its directory, the second steps is using buildah to build the image, after the image is build the next steps is pushing the image to registry using the same buildah process as the build, the last steps is to show image digest of the image that being build.
 
-> Note: Since service account already contains credential for registry as a dockerconfig we don't need to login manually to the registry
+> **Note**
+> Since service account already contains credential for registry as a dockerconfig we don't need to login manually to the registry
 
 Below are parameters being used in this task.
 
@@ -134,7 +138,8 @@ Parameters Name | Parameter call | Description
 
 Deploy task contains 3 steps, the first steps are to check manifest directory and its file, the second steps are deployment steps using kubernetes manifest file via `oc apply` command, after deployment the next steps is to check the service, route and pod status after manifest file is applied. Below are parameters being used in this task.
 
-> Note: Theres no oc login command due to our service account already have access to current namespace.
+> **Note**
+> Theres no oc login command due to our service account already have access to current namespace.
 
  Below are parameters being used in this task.
 
@@ -163,7 +168,8 @@ tkn pipeline start <pipeline-name> \
 --workspace name=source,claimName=<pvc-name> \
 ```
 
-> Note: When running the command above you will prompt to input each parameter required by the pipeline, you can just enter each parameter to use its default value or you can input the value according to your needs.
+> **Note**
+> When running the command above you will prompt to input each parameter required by the pipeline, you can just enter each parameter to use its default value or you can input the value according to your needs.
 
 To help running the pipeline we can create PipelineRuns file, where it contains parameters that user specify, workspace being used by the pipeline and service account, to add PipelineRuns to the name space use following command.
 

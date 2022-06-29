@@ -10,6 +10,7 @@ Before we can create ci/cd solution here following thing that user required.
 * PVC
 * DockerHub Account
 
+> **Note**
 > To create DockerHub access token login with your account then go to account settings > Security > New Access Token > then give description and Access permissions minimum 'Read & Write'.
 
 ## Steps
