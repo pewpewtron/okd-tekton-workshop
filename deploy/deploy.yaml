@@ -19,7 +19,7 @@ spec:
             memory: "128Mi"
             cpu: "500m"
         ports:
-        - containerPort: 3000
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
@@ -29,8 +29,8 @@ spec:
   selector:
     app: okd-tekton-workshop
   ports:
-  - port: 3000
-    targetPort: 3000
+  - port: 8080
+    targetPort: 8080
 ---
 apiVersion: route.openshift.io/v1
 kind: Route
@@ -38,7 +38,7 @@ metadata:
   name: okd-tekton-workshop-route
 spec:
   port:
-    targetPort: 3000
+    targetPort: 8080
   to:
     kind: Service
     name: okd-tekton-workshop-service
